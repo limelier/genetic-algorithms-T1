@@ -29,7 +29,7 @@ std::vector<bool> generateBitset(size_t size) {
     }
     return bitset;
 }
-std::vector<std::vector<bool>> neighbors(std::vector<bool> &bitset) {
+std::vector<std::vector<bool>> generateNeighbors(std::vector<bool> &bitset) {
     const size_t size = bitset.size();
     std::vector<std::vector<bool>> neighbors;
     typeof(bitset) neighbor;
@@ -39,4 +39,18 @@ std::vector<std::vector<bool>> neighbors(std::vector<bool> &bitset) {
         neighbors.push_back(neighbor);
     }
     return neighbors;
+}
+
+double bitsetToDouble(const std::vector<bool>& bitset, size_t bits, double lower, double upper) {
+    double result = lower;
+    double bitValue = (upper - lower) / pow(2, bits);
+
+    for (size_t i = 1; i <= bits; i++) {
+        if (bitset[bits - i]) {
+             result += bitValue;
+        }
+        bitValue *= 2;
+    }
+
+    return result;
 }
