@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/t1_project.dir/main.cpp.o CMakeFiles/t1_project.dir/util/bitsetFuncs.cpp.o  -o t1_project -pthread 
