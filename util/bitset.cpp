@@ -1,18 +1,6 @@
-//
-// Created by tiacobescu on 15.10.2019.
-//
-
 #include <cmath>
 #include <functional>
-#include <random>
-
-bool randomBool() {
-    static std::random_device randomDevice;
-    static thread_local auto generator = std::mt19937_64(randomDevice());
-    static auto gen = std::bind(std::uniform_int_distribution<>(0,1), generator);
-
-    return gen();
-}
+#include "../util/random.h"
 
 #include "bitset.h"
 std::size_t bitsetSize(double lower, double upper, int precision) {
@@ -90,6 +78,13 @@ std::vector<double> bitsetToDoubles(const std::vector<bool> &bitset, size_t chun
     }
 
     return result;
+}
+std::vector<bool> randomNeighbor(std::vector<bool> &bitset) {
+    auto neighbor = bitset;
+    auto index = randomIndex(neighbor.size());
+
+    neighbor[index] = !neighbor[index];
+    return neighbor;
 }
 
 

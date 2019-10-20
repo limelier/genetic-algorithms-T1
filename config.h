@@ -4,9 +4,14 @@
 #include <cstddef>
 const int ALGORITHM_RUNS = 30;
 
-const int HILLCLIMBER_ATTEMPTS = 1000;
-const double BEST_INITIAL_VALUE = 100000000.0;
+const int ANNEALING_STAGES = 100;
+const double ANNEALING_INITIAL_TEMPERATURE = 1;
+const int ANNEALING_CONSECUTIVE_FAILURE_MULT = 1;
 
-const int PRECISION = 5;
+const int HILLCLIMBER_ATTEMPTS = 1000;
+const double HILLCLIMBER_BEST_INIT_VALUE = 100000000.0;
+
+
+const int PRECISION = 4;
 
 #endif //T1_PROJECT__CONFIG_H_

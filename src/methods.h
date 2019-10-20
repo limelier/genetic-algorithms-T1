@@ -8,6 +8,14 @@
 #include <functional>
 #include "../util/result.h"
 
-result hillClimber(const std::function<double(std::vector<double>)>&, double lower, double upper, double dimensions, bool steepestAscent);
+result hillClimber(const std::function<double(std::vector<double>)> &function,
+                   double lower,
+                   double upper,
+                   double dimensions,
+                   bool steepestAscent);
+result simulatedAnnealing(const std::function<double(std::vector<double>)> &function,
+                          double lower,
+                          double upper,
+                          double dimensions);
 
 #endif //T1_PROJECT_SRC_METHODS_H_
