@@ -14,7 +14,7 @@ bool randomBool() {
     return gen();
 }
 
-#include "bitsetFuncs.h"
+#include "bitset.h"
 std::size_t bitsetSize(double lower, double upper, int precision) {
     // precision: interpreted as (upper - lower) * 10^-precision
     double intervalLength = upper - lower;
@@ -76,6 +76,17 @@ std::vector<std::vector<bool>> splitBitset(std::vector<bool> bitset, size_t chun
         const size_t chunkEnd = (i + 1) * chunkSize;
 
         result.emplace_back(bitset.begin() + chunkStart, bitset.begin() + chunkEnd);
+    }
+
+    return result;
+}
+std::vector<double> bitsetToDoubles(const std::vector<bool> &bitset, size_t chunkSize, double lower, double upper) {
+    std::vector<double> result;
+    auto bitsets = splitBitset(bitset, chunkSize);
+
+    result.reserve(bitsets.size());
+    for (const auto& bset : bitsets) {
+        result.push_back(bitsetToDouble(bset, chunkSize, lower, upper));
     }
 
     return result;

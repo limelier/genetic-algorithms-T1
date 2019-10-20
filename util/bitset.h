@@ -1,5 +1,5 @@
-#ifndef T1_PROJECT_UTIL_BITSETFUNCS_H_
-#define T1_PROJECT_UTIL_BITSETFUNCS_H_
+#ifndef T1_PROJECT_UTIL_BITSET_H_
+#define T1_PROJECT_UTIL_BITSET_H_
 
 #include <cstddef>
 #include <vector>
@@ -10,5 +10,6 @@ std::vector<std::vector<bool>> generateNeighbors(std::vector<bool>& bitset);
 double bitsetToDouble(const std::vector<bool>& bitset, size_t bits, double lower, double upper);
 std::vector<bool> mergeBitsets(const std::vector<std::vector<bool>>& bitsets);
 std::vector<std::vector<bool>> splitBitset(std::vector<bool> bitset, size_t chunkSize);
+std::vector<double> bitsetToDoubles(const std::vector<bool>& bitset, size_t chunkSize, double lower, double upper);
 
-#endif //T1_PROJECT_UTIL_BITSETFUNCS_H_
+#endif //T1_PROJECT_UTIL_BITSET_H_
