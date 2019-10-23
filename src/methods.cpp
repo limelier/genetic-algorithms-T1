@@ -45,7 +45,9 @@ result hillClimber(const std::function<double(std::vector<double>)> &function,
                 }
             }
 
-            if (!foundBetter) {
+            auto crtTime = Clock::now();
+            auto crtDuration = std::chrono::duration_cast<std::chrono::milliseconds>(crtTime - startTime).count();
+            if (!foundBetter || crtDuration > HILLCLIMBER_MS_PER_ATTEMPT) {
                 local = true;
             }
         }
@@ -75,16 +77,23 @@ result simulatedAnnealing(const std::function<double(std::vector<double>)> &func
     auto candidate = generateBitset(BITS);
     auto cEval = function(bitsetToDoubles(candidate, CHUNK, lower, upper));
 
-    for (int stage = 0; stage < ANNEALING_STAGES; stage++) {
+    size_t tempStep = 0;
+    while (temperature > ANNEALING_STOPPING_TRESHHOLD) {
         int consecutiveFailures = 0;
-        while (consecutiveFailures < ANNEALING_CONSECUTIVE_FAILURE_MULT * dimensions) {
+        while (consecutiveFailures < ANNEALING_CONSEC_FAILURE_LIMIT) {
+            auto crtTime = Clock::now();
+            auto crtDuration = std::chrono::duration_cast<std::chrono::milliseconds>(crtTime - startTime).count();
+            if (crtDuration > ANNEALING_MAX_TIME_MS) {
+                return {cEval, bitsetToDoubles(candidate, CHUNK, lower, upper), crtDuration};
+            }
+
             auto neighbor = randomNeighbor(candidate);
             auto nEval = function(bitsetToDoubles(neighbor, CHUNK, lower, upper));
 
             if (nEval < cEval) {
                 candidate = neighbor;
                 cEval = nEval;
-                    consecutiveFailures = 0;
+                consecutiveFailures = 0;
             } else {
                 double base = -(fabs(cEval - nEval) / temperature);
                 if (randomSubunitary() < exp(base)) {
@@ -96,7 +105,8 @@ result simulatedAnnealing(const std::function<double(std::vector<double>)> &func
                 }
             }
         }
-        temperature *= double(stage + 1) / double(stage + 2);
+        temperature *= double(tempStep + 1) / double(tempStep + 2);
+        tempStep++;
     }
 
     const auto endTime = Clock::now();

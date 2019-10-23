@@ -6,7 +6,7 @@
 std::size_t bitsetSize(double lower, double upper, int precision) {
     // precision: interpreted as (upper - lower) * 10^-precision
     double intervalLength = upper - lower;
-    int values = int(intervalLength * pow(10, precision));
+    auto values = size_t(intervalLength * pow(10, precision));
     size_t bits = ceil(log2(values));
     return bits;
 }
