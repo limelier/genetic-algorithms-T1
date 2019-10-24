@@ -3,7 +3,7 @@ project(t1_project)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(t1_project main.cpp util/bitset.cpp util/bitset.h util/functions.cpp util/functions.h src/methods.cpp src/methods.h util/result.h config.h util/random.cpp util/random.h)
+add_executable(t1_project main.cpp util/bitset.cpp util/bitset.h util/functions.cpp util/functions.h src/methods.cpp src/methods.h util/result.h config.h util/random.cpp util/random.h src/testRunner.cpp src/testRunner.h)
 
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)

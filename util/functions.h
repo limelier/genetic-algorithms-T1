@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cmath>
+#include <functional>
 
 // use xi in [-5.12, 5.12]
 double rastrigin(const std::vector<double>& x);
@@ -13,5 +14,7 @@ double dixon_price(const std::vector<double>& x);
 
 // use xi in [0, pi]
 double michalewicz(const std::vector<double>& x);
+
+typedef std::function<double(std::vector<double>)> testFunction;
 
 #endif //PROJECT_1__FUNCTIONS_H_

@@ -7,15 +7,25 @@
 
 #include <functional>
 #include "../util/result.h"
+#include "../util/functions.h"
 
-result hillClimber(const std::function<double(std::vector<double>)> &function,
+result hillClimber(const testFunction &function,
                    double lower,
                    double upper,
-                   double dimensions,
+                   int dimensions,
                    bool steepestAscent);
-result simulatedAnnealing(const std::function<double(std::vector<double>)> &function,
+result simulatedAnnealing(const testFunction &function,
                           double lower,
                           double upper,
-                          double dimensions);
+                          int dimensions);
+
+auto hillClimberSA = [](const auto& function, auto lower, auto upper, auto dimensions) {
+    return hillClimber(function, lower, upper, dimensions, true);
+};
+auto hillClimberFA = [](const auto& function, auto lower, auto upper, auto dimensions) {
+    return hillClimber(function, lower, upper, dimensions, false);
+};
+
+typedef std::function<result(testFunction, double, double, int)> testMethod;
 
 #endif //T1_PROJECT_SRC_METHODS_H_

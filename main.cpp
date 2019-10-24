@@ -1,8 +1,6 @@
-#include <iostream>
-#include "src/methods.h"
-#include "util/functions.h"
+#include "src/testRunner.h"
 
 int main() {
-
-    std::cout << res.fx << ' ' << res.time;
+    runTests();
+    return 0;
 }
