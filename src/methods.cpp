@@ -9,10 +9,10 @@
 
 using Clock = std::chrono::high_resolution_clock;
 
-result hillClimber(const std::function<double(std::vector<double>)> &function,
+result hillClimber(const testFunction &function,
                    double lower,
                    double upper,
-                   double dimensions,
+                   int dimensions,
                    bool steepestAscent) {
 
     const auto startTime = Clock::now();
@@ -63,10 +63,10 @@ result hillClimber(const std::function<double(std::vector<double>)> &function,
 
     return {bEval, bitsetToDoubles(best, CHUNK, lower, upper), duration};
 }
-result simulatedAnnealing(const std::function<double(std::vector<double>)> &function,
+result simulatedAnnealing(const testFunction &function,
                           double lower,
                           double upper,
-                          double dimensions) {
+                          int dimensions) {
     const auto startTime = Clock::now();
 
     double temperature = ANNEALING_INITIAL_TEMPERATURE;
