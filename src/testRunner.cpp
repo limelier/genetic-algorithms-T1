@@ -66,7 +66,7 @@ void runTests() {
     for (const auto& func : funcs) {
         for (const auto& methodPair : methodPairs) {
             for (int dim : dimensions) {
-                std::string filename = "./output/" + func.name + '_' + methodPair.first + '_' + std::to_string(dim);
+                std::string filename = "output/" + func.name + '_' + methodPair.first + '_' + std::to_string(dim) + ".txt";
                 runTest(filename, func.f, methodPair.second, func.lower, func.upper, dim);
             }
         }
